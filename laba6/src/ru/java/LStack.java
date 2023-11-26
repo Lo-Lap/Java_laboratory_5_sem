@@ -24,6 +24,13 @@ public class LStack{
         stack.push(84);
         stack.push(11);
 
+        stack.push(200);
+        stack.push(840);
+        stack.push(110);
+
+        stack.push(220);
+        stack.push(284);
+        stack.push(211);
         System.out.println("Размер стека = "+stack.size());
 
     }
@@ -56,9 +63,9 @@ public class LStack{
     {
         if (this.isFull()) //Проверяем на заполненость стека
         {
-            System.out.println("Ошибка: переполнение стека");
-            System.out.println("Добавить элемент нельзя");
-            return;
+            System.out.println("Увеличиваем размер стека");
+            this.capacity *= 2; //увеличиваем размер массива в два раза
+            this.array = Arrays.copyOf(this.array, this.capacity);  //перезаписываем массив в массив большего размера
         }
         this.array[top + 1]=i;
         this.top++;

@@ -1,63 +1,7 @@
 package ru.java;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class LStack{
-    public static void main(String[] args) {
-        System.out.println("LStack");
-
-        LStack stack = new LStack(10);
-
-        stack.push(5);
-        stack.push(1);
-        stack.push(8);
-        stack.push(10);
-        stack.push(15);
-
-        System.out.println("Верхний элемент стека = "+stack.peek());
-
-        stack.pop();
-
-        System.out.println("Верхний элемент стека после удаления = "+stack.peek());
-
-        stack.push(20);
-        stack.push(84);
-        stack.push(11);
-
-        System.out.println("Размер стека = "+stack.size()+"\n");
-
-        analyzeClass(stack);
-    }
-
-    public static void analyzeClass(Object o) { //метод для вывода информации о классе
-        Class clazz = o.getClass();
-
-        System.out.println("Имя класса: " + clazz + "\n");
-
-        System.out.println("Родительский класс: " + clazz.getSuperclass() + "\n");
-
-        System.out.println("Конструкторы класса: ");
-        Constructor[] arr_constructor =clazz.getConstructors();
-        for (Constructor constructor : arr_constructor) {
-            System.out.println(constructor);
-        }
-
-        System.out.println("\n" + "Поля класса: ");
-        Field[] arr_field = clazz.getDeclaredFields();
-        for (Field field : arr_field) {
-            System.out.println(field);
-        }
-
-        System.out.println("\n" + "Методы класса: ");
-        Method[] arr_meth = clazz.getDeclaredMethods();
-        for (Method method : arr_meth) {
-            System.out.println(method);
-        }
-    }
-
     // Конструкторы для инициализации стека
     public LStack()  //Конструктор по умолчанию
     {
