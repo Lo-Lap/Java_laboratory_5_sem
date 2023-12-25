@@ -1,7 +1,9 @@
 package ru.java;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class Read_byte_file {
@@ -14,8 +16,9 @@ public class Read_byte_file {
 
     public void read_map() throws IOException
     {
-        this.inputStream = new FileInputStream(this.input_file_name);
-        this.encoding_byte = inputStream.read();
+        FileInputStream fileinputStream = new FileInputStream(this.input_file_name);
+
+        this.inputStream = new BufferedReader(new InputStreamReader(fileinputStream, StandardCharsets.UTF_8));
 
         int byteRead = inputStream.read(); //байт обозначающий количество делений кодовой строки для количества всех символов в исхожном тексте
         //чтение числа всех элементов в исходном файле
@@ -82,18 +85,9 @@ public class Read_byte_file {
     public void write_to_file(String decode_line)
             //функция для записи декодированного текста в файл
     {
-        String encode =" ";
-        if (this.encoding_byte==1) encode="UTF-8";
-        else encode="UTF-16";
-
-        try(OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(this.output_file_name),
-                Charset.forName(encode).newEncoder()
-        ))
+        try
         {
-            writer.write(decode_line);
-            writer.flush();
-            System.out.println("Исходный файл восстановлен по указанному пути");
+            Files.write(Paths.get(this.output_file_name), decode_line.getBytes());
         }
         catch(IOException ex){
 
@@ -110,16 +104,12 @@ public class Read_byte_file {
         return total_number_of_characters;
     }
 
-    public int getEncoding_byte() {
-        return encoding_byte;
-    }
 
-    private InputStream inputStream; //входной поток (поток основанный на закодированном файле)
+    private BufferedReader inputStream; //входной поток (поток основанный на закодированном файле)
     private String input_file_name; //входной файл (закодированный файл)
     private String output_file_name; //выходной файл (имя файла для восстановления исходного)
     private HashMap<Character, String> map_decoding; //словарь для сохранения кодировок букв
     private int total_number_of_characters=0;
 
-    private int encoding_byte;
 
 }

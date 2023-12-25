@@ -2,17 +2,17 @@ package ru.java;
 
 //структура узла дерева Хаффмана
 public class Node {
-    private char character; //символ из текста
+    private Integer character; //символ из текста
     private int frequency; //частота появления буквы в тексте
     private Node left = null; //ссылка на левый дочерний узел в дереве
     private Node right = null; //ссылка на правый дочерний узел в дереве
-    public Node(char ch, int freq)
+    public Node(int ch, int freq)
     {
         this.character = ch;
         this.frequency = freq;
     }
 
-    public Node(char ch, int freq, Node left, Node right)
+    public Node(int ch, int freq, Node left, Node right)
     {
         this.character = ch;
         this.frequency = freq;
@@ -24,7 +24,7 @@ public class Node {
         return frequency;
     }
 
-    public char getCharacter() {
+    public int getCharacter() {
         return character;
     }
 

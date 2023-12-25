@@ -7,17 +7,11 @@ import java.util.HashMap;
 
 
 public class huffman_decode {
-    public static void main(String[] args)
-    {
-        huffman_decode huf = new huffman_decode("out", "notes3");
-        huf.read_file_to_decoding();
-        huf.decoding();
-    }
     public huffman_decode(String file_name_input, String file_name_output)
     {
         this.map_decoding = new HashMap<>();
-        this.input_file_name = file_name_input + ".arc";
-        this.output_file_name = file_name_output + ".txt";
+        this.input_file_name = file_name_input;
+        this.output_file_name = file_name_output;
         this.read = new Read_byte_file(this.input_file_name, this.output_file_name);
     }
 
